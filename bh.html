@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bharath M · portfolio</title>
+  <!-- Font Awesome 5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --bg-light: #ffffff;
+      --bg-offwhite: #f1f5f9;
+      --text-dark: #0b1120;
+      --text-muted: #334155;
+      --card-bg: rgba(255,255,255,0.8);
+      --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      --shadow-glass: 0 20px 35px -10px rgba(0,20,40,0.2);
+      --border-glass: 1px solid rgba(255,255,255,0.5);
+      --gradient-soft: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: var(--border-glass);
+      border-radius: 2rem;
+      box-shadow: var(--shadow-glass);
+      transition: all 0.25s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 45px -15px var(--primary-light);
+      border-color: rgba(37,99,235,0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: linear-gradient(130deg, var(--primary), #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: 0.2s;
+      font-size: 1.05rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.8rem;
+        box-shadow: 0 30px 40px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 2.5rem 2.5rem;
+        pointer-events: none;
+      }
+      .nav-links.active {
+        transform: translateY(0);
+        pointer-events: all;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* sections */
+    section {
+      padding: 5rem 0;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      background: linear-gradient(145deg, #0f172a, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      border-left: 6px solid var(--primary);
+      padding-left: 1.5rem;
+    }
+
+    /* HOME */
+    #home {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(circle at 90% 30%, #dbeafe, transparent 60%);
+    }
+    .home-grid {
+      display: grid;
+      grid-template-columns: auto 1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    /* circular image */
+    .home-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-circle {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 20px 30px -10px rgba(37,99,235,0.3);
+      border: 4px solid white;
+      transition: transform 0.3s ease;
+    }
+    .profile-circle:hover {
+      transform: scale(1.02);
+    }
+    .home-name {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .home-name span {
+      background: linear-gradient(130deg, var(--primary), #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .home-tagline {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      margin: 1rem 0 2rem;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: 1.5px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 20px -8px var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+    .btn-outline {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .home-highlight {
+      background: var(--gradient-soft);
+      border-radius: 3rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid white;
+    }
+    .highlight-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .stat-item i {
+      color: var(--primary);
+      width: 2rem;
+    }
+
+    /* ABOUT, SKILLS etc. (same as before) */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .about-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(37,99,235,0.1);
+    }
+    .about-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    .edu-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 0.8rem;
+    }
+    .edu-year {
+      font-weight: 600;
+      color: var(--primary);
+      min-width: 80px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .skill-category {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      transition: 0.2s;
+    }
+    .skill-category:hover {
+      background: #f0f7ff;
+    }
+    .skill-category h3 {
+      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .skill-tag {
+      background: #e6f0ff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      border: 1px solid rgba(37,99,235,0.2);
+    }
+    .skill-tag.soft {
+      background: #f1f0ff;
+      color: #6d28d9;
+    }
+    .projects-grid, .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .project-card, .cert-card {
+      background: var(--gradient-soft);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .project-card:hover, .cert-card:hover {
+      background: white;
+      border-color: var(--primary-light);
+    }
+    .project-icon, .cert-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .project-card h3, .cert-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .achievement-badge {
+      background: #fef9c3;
+      border: 1px solid #facc15;
+      border-radius: 2rem;
+      padding: 0.3rem 1.2rem;
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #854d0e;
+      margin-top: 1rem;
+    }
+    #contact {
+      background: #eef2ff;
+      border-radius: 4rem 4rem 0 0;
+      margin-top: 2rem;
+    }
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+    .contact-item {
+      background: white;
+      border-radius: 3rem;
+      padding: 1.8rem 2.5rem;
+      min-width: 220px;
+      box-shadow: var(--shadow-sm);
+      transition: 0.2s;
+      border: 1px solid transparent;
+    }
+    .contact-item:hover {
+      border-color: var(--primary);
+      transform: scale(1.02);
+    }
+    .contact-item i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .contact-item a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    .linkedin-button {
+      background: #0077b5;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      margin: 1.5rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0f172a;
+      color: white;
+      border-radius: 3rem 3rem 0 0;
+    }
+
+    @media (max-width: 768px) {
+      .home-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .profile-circle {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 1rem;
+      }
+      .home-highlight {
+        margin-top: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Bharath M</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </nav>
+
+  <!-- HOME with circular image -->
+  <section id="home">
+    <div class="container home-grid">
+      <!-- circular image left -->
+      <div class="home-image">
+        <img src="picbh.jpeg"  class="profile-circle">
+      </div>
+      <!-- text content -->
+      <div>
+        <h1 class="home-name">Hi, I'm <span>Bharath M</span></h1>
+        <p class="home-tagline">aspiring software developer · MCA student · tech enthusiast</p>
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> view work</a>
+          <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> contact</a>
+        </div>
+        <div style="margin-top: 2.5rem; display: flex; gap: 1.5rem;">
+          <a href="https://www.linkedin.com/in/bharath-m-9b4a88382/" target="_blank" style="font-size: 2rem; color: #0a66c2;"><i class="fab fa-linkedin"></i></a>
+          <a href="#" style="font-size: 2rem; color: var(--text-muted);"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <!-- right highlight card -->
+      <div class="home-highlight">
+        <div class="highlight-stats">
+          <div class="stat-item"><i class="fas fa-graduation-cap"></i> MCA (pursuing) @ Francis Xavier</div>
+          <div class="stat-item"><i class="fas fa-code"></i> Python · HTML · CSS</div>
+          <div class="stat-item"><i class="fas fa-trophy"></i> Software Marketing winner</div>
+          <div class="stat-item"><i class="fas fa-language"></i> English / Tamil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT section (unchanged) -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About me</h2>
+      <div class="about-grid">
+        <div class="about-card glass-card">
+          <h3>📌 Profile</h3>
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">A highly motivated and detail-oriented MCA student with a strong foundation in programming, web development. Passionate about learning new technologies, and want to build my career in software development. Committed to continuous improvement and team collaboration in dynamic work environments.</p>
+          <h3>🎓 Education</h3>
+          <div class="edu-item"><span class="edu-year">2025-26</span> MCA (Pursuing) – Francis Xavier Engineering College, Anna University</div>
+          <div class="edu-item"><span class="edu-year">2022-25</span> BCA – Sadakathullah Appa College · CGPA 8.14/10</div>
+          <div class="edu-item"><span class="edu-year">2021</span> HSC (12th) – Government Higher Secondary School</div>
+          <div class="edu-item"><span class="edu-year">2019</span> SSLC (10th) – Government Higher Secondary School</div>
+        </div>
+        <div class="about-card glass-card">
+          <h3>💪 Strengths</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem;">
+            <span class="skill-tag soft">Team Collaboration</span>
+            <span class="skill-tag soft">Adaptability</span>
+            <span class="skill-tag soft">Quick Learner</span>
+          </div>
+          <h3>🗣️ Languages</h3>
+          <div style="display: flex; gap: 1.5rem; font-size: 1.2rem;">
+            <span><i class="fas fa-check-circle" style="color:var(--primary);"></i> English</span>
+            <span><i class="fas fa-check-circle" style="color:var(--primary);"></i> Tamil</span>
+          </div>
+          <h3 style="margin-top: 2rem;">🏆 Achievement</h3>
+          <p><i class="fas fa-medal" style="color:gold;"></i> Software Marketing competition – Xavier's College</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical & professional skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-terminal" style="color:var(--primary);"></i> Programming</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-tools"></i> Tools & OS</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">VSCode</span>
+            <span class="skill-tag">Git (basic)</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-users"></i> Soft skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag soft">Team Collaboration</span>
+            <span class="skill-tag soft">Adaptability</span>
+            <span class="skill-tag soft">Quick Learner</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-globe"></i> Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">English (fluent)</span>
+            <span class="skill-tag">Tamil (native)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects & internships</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <i class="fas fa-city project-icon"></i>
+          <h3>IoT based Smart City System</h3>
+          <p>Final year project – integrates IoT sensors for smart infrastructure. (Academic project)</p>
+        </div>
+        <div class="project-card">
+          <i class="fas fa-shopping-cart project-icon"></i>
+          <h3>Online shopping application</h3>
+          <p>Developed a web-based shopping app during internship at Code Genie pvt ltd. (Full stack basic)</p>
+        </div>
+        <div class="project-card">
+          <i class="fas fa-bolt project-icon"></i>
+          <h3>Intern – Code Genie</h3>
+          <p>Web designing intern · worked on live projects and gained industry experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <h2 class="section-title">Certifications & achievements</h2>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <i class="fas fa-certificate cert-icon" style="color:#2563eb;"></i>
+          <h3>Web Designing Internship</h3>
+          <p>Certification from Code Genie pvt ltd. – completed web design track.</p>
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-database cert-icon" style="color:#16a34a;"></i>
+          <h3>MongoDB introduction</h3>
+          <p>MongoDB University – introduction to NoSQL databases.</p>
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-trophy cert-icon" style="color:#eab308;"></i>
+          <h3>Software Marketing competition</h3>
+          <p>Achievement – Xavier's College inter-collegiate event.</p>
+          <span class="achievement-badge"><i class="fas fa-star"></i> winner</span>
+        </div>
+      </div>
+      <p style="margin-top:2rem; text-align:center; font-style:italic; background: #ffffffaa; padding:0.8rem; border-radius:40px;">+ Internship certification (web designing) & MongoDB listed above</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container contact-container">
+      <h2 class="section-title" style="border-left-color: white;">Let's connect</h2>
+      <div class="contact-cards">
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <h4>Phone</h4>
+          <a href="tel:+918248773510">+91 8248773510</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <h4>Email</h4>
+          <a href="mailto:bharath05offcl@gmail.com">bharath05offcl@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <h4>LinkedIn</h4>
+          <a href="https://www.linkedin.com/in/bharath-m-9b4a88382/" target="_blank">bharath-m-9b4a88382</a>
+        </div>
+      </div>
+      <a href="https://www.linkedin.com/in/bharath-m-9b4a88382/" target="_blank" class="linkedin-button"><i class="fab fa-linkedin"></i> Visit my LinkedIn profile</a>
+      <p style="color: #1e293b;"><i class="fas fa-map-pin"></i> based in Tamil Nadu, India</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Bharath M – built with modern CSS & <i class="fas fa-heart" style="color:#ef4444;"></i> for clean portfolio</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
